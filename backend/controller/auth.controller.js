@@ -59,14 +59,16 @@ export const login = async (req, res) => {
     generateTokenAndSetCookie(user._id, res);
     res.status(200).json({
       _id: user._id,
-      fullName: user.userName,
+      fullName: user.fullName,
+      userName: user.userName,
       profilePic: user.profilePic,
     });
-  } catch {
+  } catch (error) {
     console.log("error in login controller", error.message);
     res.status(500).json({ error: "internal server error" });
   }
 };
+
 export const logout = (req, res) => {
   try {
     res.cookie("jwt", "  ", { maxAge: 0 });
