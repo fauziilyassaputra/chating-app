@@ -8,6 +8,7 @@ const generateTokenAndSetCookie = (userId, res) => {
     maxAge: 15 * 24 * 60 * 1000, // Milisecond
     httpOnly: true, //  prevent xss attacks
     sameSite: "strict",
+    secure: process.env.Node_ENV !== "development",
   });
 };
 export default generateTokenAndSetCookie;
